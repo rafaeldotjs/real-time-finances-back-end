@@ -2,7 +2,7 @@ import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import finnhub from "finnhub";
-import db from "./src/db.js";
+//import db from "./src/db.js";
 
 const port = process.env.PORT || 3001;
 
@@ -31,8 +31,7 @@ const finnhubClient = new finnhub.DefaultApi();
 
 var dataHandle = (socket, symbol, data, timeFrom, timeTo, insert) => {
   if (insert) {
-    process.on("uncaughtException", function (exception) {
-      db.insertData(db.r, {
+    /*db.insertData(db.r, {
         symbol: symbol,
         open: data.o,
         high: data.h,
@@ -40,8 +39,7 @@ var dataHandle = (socket, symbol, data, timeFrom, timeTo, insert) => {
         close: data.c,
         volume: data.v,
         timestamp: data.t,
-      });
-    });
+      });*/
   }
   socket.emit("update", { symbol, ...data });
 };

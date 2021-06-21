@@ -8,14 +8,11 @@ const connection = {
 
 var db = {
   r,
-  insertChart: () => {},
-  removeChart: () => {},
   insertData: (r, data) => {
     r.connect(connection).then((conn) => {
       return r.table("stocks-data").insert(data).run(conn);
     });
   },
-  dataChanges: () => {},
 };
 
 export default db;
